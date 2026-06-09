@@ -8,6 +8,16 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    services:
+      vitiger:
+        image: your-vitiger-docker-image  # Replace with your Docker image
+        options: >-
+          --health-cmd="curl -f http://localhost:8888 || exit 1"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+        ports:
+          - 8888:80
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -17,6 +27,8 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Wait for server to be ready
+      run: npx wait-on http://localhost:8888 --timeout 30000
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
