@@ -1,0 +1,8 @@
+{
+    "subject": "sales order creation for larry",
+    "billStreet": "bangalore",
+    "shipStreet": "bangalore",
+    "salesheader":"Creating New Sales Order",
+    "qty":"5",
+    "invoiceheader":"Creating New Invoice"
+}
