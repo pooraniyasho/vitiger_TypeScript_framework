@@ -1,6 +1,5 @@
-export async class  Randomnumber{
-        randomnumber(){
+export async function  Randomnumber(){
+    
         var randomnumber=Math.floor(Math.random()*1000);
         return randomnumber;
-    }
 }

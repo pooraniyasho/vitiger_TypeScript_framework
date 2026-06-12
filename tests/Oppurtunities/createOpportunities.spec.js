@@ -4,9 +4,8 @@ import {Randomnumber} from '../../utilities/Randomnumber.js'
 
 test('create Opportunities',async ({opportunities}) => {
     test.slow();
-    let randnum= new Randomnumber();
-    let ranname=randnum.randomnumber();
-    let oppname=Oppurdet.OpportunityName+ranname;
+      let randname= Randomnumber();
+    let oppname=Oppurdet.OpportunityName+randname;
     //create Opportunities
     await opportunities.createOpportunities(oppname);
    //validation

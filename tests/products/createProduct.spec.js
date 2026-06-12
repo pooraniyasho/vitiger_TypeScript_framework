@@ -4,8 +4,8 @@ import {Randomnumber} from '../../utilities/Randomnumber.js'
 
 test('Create product',async ({products}) => {
     test.slow();
-    let randomname= new Randomnumber();
-    let proName=productde.productname+randomname.randomnumber();
+    let randname= Randomnumber();
+    let proName=productde.productname+randname;
     await products.createproductdetail(proName,productde.unitPrice,productde.usageunit,productde.qtyinstock,productde.path,productde.path,productde.uploadpath);
     await products.verifyproduct(proName);
 });

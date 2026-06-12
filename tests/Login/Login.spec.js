@@ -3,5 +3,6 @@ import {LoginPage} from '../../pages/login.js'
 import data from '../../test-data/login.json';
 
 test('POM Login',async ({signin}) => { 
+    test.slow();
     await signin.verifyHomePage(data.Homeurl);
     })

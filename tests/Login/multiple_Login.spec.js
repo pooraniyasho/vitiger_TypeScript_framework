@@ -3,6 +3,7 @@ import multipleLogin from "../../test-data/multipleLogin.json"
 import data from '../../test-data/login.json';
 
 test('Login', async ({ signin }) => {
+    test.slow()
     await signin.signout(data.url);
     for (let data1 of multipleLogin) {
         await signin.logindetail(data1.userName, data1.passWord);

@@ -5,8 +5,7 @@ import {Randomnumber} from '../../utilities/Randomnumber.js'
 
 test('Create leads', async ({ leads }) => {
 test.slow();
-    let randnum= new Randomnumber();
-    let randname=randnum.randomnumber();
+    let randname= Randomnumber();
     let leadname=Leaddetails.firstname+randname;
     await leads.createLead(leadname, Leaddetails.salutationtype, Leaddetails.lastname, Leaddetails.company, Leaddetails.mobile, Leaddetails.email);
     await leads.verifyLead(leadname);
