@@ -23,3 +23,12 @@ pipeline {
         }
     }
 }  
+
+
+//Scheduling the time in the jenikin is called crom format
+//minitue,hour,day_of_month,Day_of_week
+//5 min[H/5 * * * *]
+//30 10 * * *
+//0 8 * * 1
+//0 18 * * 1-5
+//H * * * * 
