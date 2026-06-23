@@ -1,8 +1,29 @@
-import { expect } from "@playwright/test"
-import {selectByIndex,selectByLabel,selectByValue } from '../utilities/dropdown.js'
+import { expect, Page, Locator } from "@playwright/test"
+import { selectByIndex, selectByLabel, selectByValue } from '../utilities/dropdown.js'
 
 export class LeadPage {
-    constructor(page) {
+    page: Page;
+    leadModule:Locator;
+    createLeadButton:Locator;
+    salutationtype:Locator;
+    firstname:Locator;
+    lastname:Locator;
+    company:Locator;
+    mobile:Locator;
+    email:Locator;
+    save:Locator;
+    closingdate:Locator;
+    saveButton:Locator;
+    convertLeadButton:Locator;
+    potentialsCheckbox:Locator;
+    organizationCheckbox:Locator;
+    contactCheckbox:Locator;
+    leadCheckbox:Locator;
+    convertSaveButton:Locator;
+    organizationName:Locator;
+    firstName:Locator;
+    popuphead:Locator;
+    constructor(page: Page) {
         this.page = page,
             this.leadModule = page.locator('//a[text()="Leads"]'),
             this.createLeadButton = page.getByAltText('Create Lead...'),
@@ -26,12 +47,12 @@ export class LeadPage {
             this.popuphead = page.locator('//img[@src="themes/images/Leads.gif"]/parent::td[@class="genHeaderSmall"]')
     }
 
-    async createLead(firstname, salutationtype, lastname, company, mobile, email) {
+    async createLead(firstname:string, salutationtype:string, lastname:string, company:string, mobile:string, email:string) {
         await this.leadModule.click(),
             await expect(this.createLeadButton).toBeVisible(),
             await this.createLeadButton.click(),
             await expect(this.page.locator('//span[text()="Creating New Lead"]')).toBeVisible(),
-            await selectByValue(this.salutationtype,salutationtype),
+            await selectByValue(this.salutationtype, salutationtype),
             await expect(this.salutationtype).toHaveValue(salutationtype),
             await this.firstname.fill(firstname),
             await expect(this.firstname).toHaveValue(firstname),
@@ -46,23 +67,23 @@ export class LeadPage {
             await this.save.click()
     }
 
-    async verifyLead(firstName) {
+    async verifyLead(firstName:string) {
         let ccname = await this.firstName.textContent();
         await expect(this.firstName).toContainText(firstName);
         console.log(ccname);
     }
-    async convertLead(closingdate) {
-            await this.convertLeadButton.click(),
-            await this.popuphead.waitFor({state:'visible'}),
+    async convertLead(closingdate:string) {
+        await this.convertLeadButton.click(),
+            await this.popuphead.waitFor({ state: 'visible' }),
             await expect(this.popuphead).toBeVisible;
-            await this.potentialsCheckbox.click(),
+        await this.potentialsCheckbox.click(),
             await expect(this.potentialsCheckbox).toBeChecked(),
             await this.closingdate.fill(closingdate),
             await expect(this.closingdate).toHaveValue(closingdate),
             await this.saveButton.click()
     }
 
-    async verifycomp(company) {
+    async verifycomp(company:string) {
         let compname = await this.organizationName.textContent();
         console.log(compname);
         await expect(this.organizationName).toContainText(company);

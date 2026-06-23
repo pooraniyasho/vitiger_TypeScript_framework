@@ -1,5 +1,4 @@
-import {test} from '../../fixtures/customFixture.js'
-import {LoginPage} from '../../pages/login.js'
+import {test} from '../../fixtures_ts/customFixture.ts'
 import data from '../../test-data/login.json';
 
 test('POM Login',async ({signin}) => { 

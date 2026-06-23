@@ -1,4 +1,4 @@
-import {test as base} from './loginfixture.js'
+import {test as base} from './loginfixture.ts'
 import {ContactPage} from '../pages/contact.js';
 import {invoicePage} from '../pages/invoice.js';
 import {LeadPage} from '../pages/Lead.js';
@@ -7,12 +7,21 @@ import {organizationPage} from '../pages/Organization.js';
 import {productsPage} from '../pages/products.js';
 import {quotePage} from '../pages/quote.js';
 import {salePage} from '../pages/sale.js';
-import {signOut} from '../pages/logout.js'
-import {LoginPage } from '../pages/login.js';
-
-export let test= base.extend({
+import {Login } from '../pages/login.ts';
+type customfix = {
+  signin:Login,
+  contacts:ContactPage,
+  leads:LeadPage,
+  opportunities:opportunitiesPage,
+  orgLogin:organizationPage,
+  products:productsPage,
+  invoices:invoicePage,
+  quotes:quotePage,
+  sales:salePage
+};
+export let test= base.extend<customfix>({
     signin:async({loginPage},use)=>{
-        let lp=new LoginPage(loginPage);
+        let lp=new Login(loginPage);
         await use(lp);
     },
     contacts: async({loginPage},use)=>{

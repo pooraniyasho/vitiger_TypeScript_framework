@@ -1,8 +1,33 @@
-import { expect } from "@playwright/test";
+import { expect,Page,Locator} from "@playwright/test";
 import {switchToPopup}from '../utilities/popup.js'
 
 export class salePage {
-    constructor(page) {
+page:Page;
+more:Locator;
+salesmodule:Locator;
+sales:Locator;
+createbutton:Locator;
+salesheader:Locator;
+salessub:Locator;
+quotename:Locator;
+quote:string;
+contactname:Locator;
+contact:string;
+potentialname:Locator;
+potential:string;
+accountname:Locator;
+account:string;
+billstreet:Locator;
+shipstreet:Locator;
+productsearch:Locator;
+productname:string;
+quantity:Locator;
+savebutton:Locator;
+saleinfo:Locator;
+createinvoice:Locator;
+invoicehead:Locator;
+saveinvoice:Locator;
+    constructor(page:Page) {
         this.page = page,
             this.more = page.locator('//a[text()="More"]'),
             this.salesmodule = page.locator('//a[@name="Sales Order"]'),
@@ -29,7 +54,7 @@ export class salePage {
             this.invoicehead = page.locator('//span[@class="lvtHeaderText"]'),
             this.saveinvoice = page.locator('//input[@accesskey="S"]')
     }
-    async createsales(salesheader, subject, billStreet, shipStreet, qty) {
+    async createsales(salesheader:string, subject:string, billStreet:string, shipStreet:string, qty:string) {
         await this.more.hover();
         await expect(this.more).toBeVisible();
         await this.salesmodule.click();
@@ -53,17 +78,17 @@ export class salePage {
         let popup5=await switchToPopup(this.page,()=>{this.productsearch.click()})
         await popup5.locator(this.productname).click()
         await this.quantity.fill(qty);
-        await expect(this.quantity).toBeVisible(qty);
+        await expect(this.quantity).toHaveValue(qty);
         await this.savebutton.nth(1).click();
 
     }
-    async verifysalesinfo(subject) {
+    async verifysalesinfo(subject:string) {
         let order = await this.saleinfo.textContent();
         await expect(this.saleinfo).toContainText(subject);
         console.log(order);
 
     }
-    async generateinvoice(invoiceheader) {
+    async generateinvoice(invoiceheader:string) {
         await this.createinvoice.click();
         await expect(this.invoicehead).toContainText(invoiceheader);
         await this.saveinvoice.nth(0).click();
