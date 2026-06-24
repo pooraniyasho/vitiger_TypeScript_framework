@@ -1,4 +1,4 @@
-import {test} from '../../fixtures_ts/customFixture.ts'
+import {test} from '../../fixtures/customFixture.ts'
 import contact1 from '../../test-data/contact.json'
 import {Randomnumber} from '../../utilities/Randomnumber.js'
 
