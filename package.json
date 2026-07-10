@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "start": "http-server -p 8888"
+=======
+    "start": "http-server -p 8888",
+    "allure": "allure serve allure-results"
+>>>>>>> 5c9249b (allure test)
   },
   "keywords": [],
   "author": "",
@@ -13,6 +18,11 @@
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "@types/node": "^25.9.0",
+<<<<<<< HEAD
+=======
+    "allure-commandline": "^2.43.0",
+    "allure-playwright": "^3.10.2",
+>>>>>>> 5c9249b (allure test)
     "http-server": "^14.1.1"
   },
   "dependencies": {
