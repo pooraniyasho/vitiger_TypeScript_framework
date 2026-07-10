@@ -17,6 +17,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 bat 'npx playwright test'
+                bat 'npx allure generate allure-results --clean -o allure-report'
                 //!bat 'npx playwright test test/file.spec.js '
                 //!bat " npx playwright test --grep-invert file1.spec.js file2.spec.js"
             }
