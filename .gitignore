@@ -6,8 +6,13 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+<<<<<<< HEAD
 
 allure-results/
 allure-report/
 playwright-report/
 test-results/
+=======
+# report
+/allure-results/
+>>>>>>> 5a6937c (allure test)
