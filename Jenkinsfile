@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                bat 'npm install'
+                bat 'npm ci'
             }
         }
 
@@ -16,14 +16,31 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'npx playwright test'
+                catchError(
+                    buildResult: 'FAILURE',
+                    stageResult: 'FAILURE'
+                ) {
+                    bat 'npx playwright test'
+                }
+            }
+        }
+
+        stage('Generate Allure Report') {
+            steps {
                 bat 'npx allure generate allure-results --clean -o allure-report'
-                //!bat 'npx playwright test test/file.spec.js '
-                //!bat " npx playwright test --grep-invert file1.spec.js file2.spec.js"
             }
         }
     }
-}  
+
+    post {
+        always {
+            archiveArtifacts(
+                artifacts: 'allure-report/**',
+                allowEmptyArchive: true
+            )
+        }
+    }
+} 
 
 
 //Scheduling the time in the jenikin is called crom format
@@ -33,3 +50,6 @@ pipeline {
 //0 8 * * 1
 //0 18 * * 1-5
 //H * * * * 
+
+//!bat 'npx playwright test test/file.spec.js '
+//!bat " npx playwright test --grep-invert file1.spec.js file2.spec.js"
